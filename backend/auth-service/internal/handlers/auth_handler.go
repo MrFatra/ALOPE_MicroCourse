@@ -19,9 +19,8 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	// MOCKUP VALIDASI (Ganti dengan query DB nantinya)
 	if input.Email == "admin@alope.com" && input.Password == "password123" {
-		token, _ := utils.GenerateToken(1) // User ID = 1
+		token, _ := utils.GenerateToken(1)
 		c.JSON(http.StatusOK, gin.H{
 			"status": "success",
 			"token":  token,

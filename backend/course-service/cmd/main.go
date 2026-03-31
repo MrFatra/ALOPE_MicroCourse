@@ -15,10 +15,8 @@ func main() {
 		log.Println("Warning: .env file not found, using system default")
 	}
 
-	// Inisialisasi Router
 	r := routes.SetupRouter()
 
-	// Ambil Port dari env
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"

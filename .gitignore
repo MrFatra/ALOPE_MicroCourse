@@ -1,0 +1,46 @@
+# --- Go ---
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+bin/
+pkg/
+obj/
+
+# --- Node.js / Vite / Next.js ---
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+dist/
+.next/
+.output/
+.vercel/
+.turbo/
+
+# --- Environment & Config ---
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+*.db
+*.sqlite
+*.sqlite-journal
+
+# --- IDE & OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Log & Debug ---
+*.log
+*.log.*
+debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

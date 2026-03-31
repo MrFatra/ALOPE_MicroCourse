@@ -1,15 +1,11 @@
-# WAJIB: Jangan copy node_modules dari Windows ke Docker!
 node_modules/
 
-# Mengabaikan folder hasil build lokal
 dist/
 build/
 
-# Mengabaikan file log dan debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Mengabaikan file environment sensitif
 .env
 .env.local
