@@ -1,0 +1,14 @@
+# Mengabaikan binary hasil build lokal
+main
+*.exe
+*.test
+
+# Mengabaikan folder vendor dan toolchain lokal
+vendor/
+pkg/
+
+# Mengabaikan git dan file Docker itu sendiri
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
