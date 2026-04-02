@@ -21,7 +21,9 @@ dist/
 .turbo/
 
 # --- Environment & Config ---
+**/.env
 .env
+.env.*
 .env.local
 .env.*.local
 .env.development
