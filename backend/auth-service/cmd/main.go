@@ -6,10 +6,19 @@ import (
 	"log"
 	"os"
 
+	_ "alope-course/auth-service/docs"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// @title           Alope Course Auth Service API
+// @version         1.0
+// @description     Service for auth service ALOPE!
+// @host            localhost:8081
+// @BasePath        /api
 func main() {
 	// Load .env file
 	err := godotenv.Load()
@@ -25,6 +34,9 @@ func main() {
 	config.ConnectDB()
 
 	r := routes.SetupRouter()
+
+	// Route Swagger
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	port := os.Getenv("PORT")
 	if port == "" {

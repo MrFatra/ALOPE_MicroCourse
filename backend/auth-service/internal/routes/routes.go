@@ -9,7 +9,7 @@ import (
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
-	r.GET("/user", handlers.GetAllUsers)
+	r.GET("/api/users", handlers.GetAllUsers)
 
 	auth := r.Group("/api/auth")
 	{

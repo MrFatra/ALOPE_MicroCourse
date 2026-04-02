@@ -7,6 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetAllUsers godoc
+// @Summary      Get all users
+// @Description  Get All List User without Pagination
+// @Tags         users
+// @Produce      json
+// @Success      200  {object}  map[string]interface{}
+// @Router       /users [get]
 func GetAllUsers(c *gin.Context) {
 	users, err := services.GetAllUsers()
 

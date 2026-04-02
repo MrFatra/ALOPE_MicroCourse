@@ -1,0 +1,23 @@
+basePath: /api
+host: localhost:8081
+info:
+  contact: {}
+  description: Service for auth service ALOPE!
+  title: Alope Course Auth Service API
+  version: "1.0"
+paths:
+  /users:
+    get:
+      description: Get All List User without Pagination
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get all users
+      tags:
+      - users
+swagger: "2.0"
