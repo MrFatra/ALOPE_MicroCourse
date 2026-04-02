@@ -9,6 +9,8 @@ import (
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
+	r.GET("/user", handlers.GetAllUsers)
+
 	auth := r.Group("/api/auth")
 	{
 		auth.POST("/login", handlers.Login)

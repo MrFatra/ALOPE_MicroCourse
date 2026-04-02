@@ -1,6 +1,7 @@
 package main
 
 import (
+	"alope-course/auth-service/internal/config"
 	"alope-course/auth-service/internal/routes"
 	"log"
 	"os"
@@ -20,6 +21,8 @@ func main() {
 	if os.Getenv("ENV") == "production" {
 		gin.SetMode(gin.ReleaseMode)
 	}
+
+	config.ConnectDB()
 
 	r := routes.SetupRouter()
 
