@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"alope-course/course-service/internal/controllers"
+	"alope-course/course-service/internal/handlers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,7 +11,9 @@ func SetupRouter() *gin.Engine {
 
 	api := r.Group("/api")
 	{
-		api.GET("/ping", controllers.GetPing)
+		api.GET("/courses", handlers.GetCourseHandler)
+		api.GET("/modules", handlers.GetModuleHandler)
+		api.GET("/testimonials", handlers.GetTestimonialHandler)
 	}
 
 	return r

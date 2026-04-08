@@ -20,7 +20,12 @@ services:
       - alope-db
     environment:
       - PORT=8081
-      - DB_URL=postgres://alope_user:password123@alope-db:5432/alope_db
+      - DB_HOST=alope-db
+      - DB_USER=alope_user
+      - DB_PASSWORD=password123
+      - DB_NAME=alope_db
+      - DB_PORT=5432
+      - DB_SSLMODE=disable
 
   # Backend: Course Service (Port 8080)
   course-service:

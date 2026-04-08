@@ -1,10 +1,12 @@
 package main
 
 import (
+	"alope-course/course-service/internal/config"
 	"alope-course/course-service/internal/routes"
 	"log"
 	"os"
 
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
@@ -15,6 +17,12 @@ func main() {
 		log.Println("Warning: .env file not found, using system default")
 	}
 
+	if os.Getenv("ENV") == "production" {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
+	config.ConnectDB()
+
 	r := routes.SetupRouter()
 
 	port := os.Getenv("PORT")
@@ -22,6 +30,10 @@ func main() {
 		port = "8080"
 	}
 
-	log.Printf("Server Alope Course berjalan di port %s", port)
+	log.Printf("[COURSE-SERVICE] Server berjalan di port %s", port)
 	r.Run(":" + port)
+
+	if err := r.Run(":" + port); err != nil {
+		log.Fatalf("Gagal menjalankan server: %v", err)
+	}
 }

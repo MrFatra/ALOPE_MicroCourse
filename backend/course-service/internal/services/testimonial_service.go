@@ -1,0 +1,17 @@
+package services
+
+import (
+	"alope-course/course-service/internal/models"
+	"alope-course/course-service/internal/repositories"
+)
+
+func GetTestimonialService() ([]models.Testimonial, error) {
+
+	testimonials, err := repositories.GetTestimonialRepository()
+
+	if err != nil {
+		return nil, err
+	}
+
+	return testimonials, nil
+}
