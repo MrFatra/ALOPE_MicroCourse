@@ -15,3 +15,13 @@ func GetTestimonialService() ([]models.Testimonial, error) {
 
 	return testimonials, nil
 }
+
+func GetTestimonialByIDService(id string) (models.Testimonial, error) {
+	testimonial, err := repositories.GetTestimonialByIDRepository(id)
+
+	if err != nil {
+		return testimonial, err
+	}
+
+	return testimonial, nil
+}

@@ -28,3 +28,25 @@ func GetModuleHandler(c *gin.Context) {
 		"data":    modules,
 	})
 }
+
+func GetModuleByIDHandler(c *gin.Context) {
+	module, err := services.GetModuleByIDService(c.Param("id"))
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"status":  "error",
+			"code":    "ALP-993",
+			"message": "Gagal mengambil data modul berdasarkan id.",
+			"data":    err.Error(),
+		})
+
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"code":    "ALP-295",
+		"message": "Berhasil mengambil data modul berdasarkan id.",
+		"data":    module,
+	})
+}

@@ -13,6 +13,7 @@ func GetTestimonialRepository() ([]models.Testimonial, error) {
 	err := db.
 		Preload("Course").
 		Preload("Course.Category").
+		Preload("User").
 		Find(&testimonials).Error
 
 	if err != nil {
@@ -20,4 +21,23 @@ func GetTestimonialRepository() ([]models.Testimonial, error) {
 	}
 
 	return testimonials, nil
+}
+
+func GetTestimonialByIDRepository(id string) (models.Testimonial, error) {
+	db := config.DB
+
+	var testimonial models.Testimonial
+
+	err := db.
+		Preload("Course").
+		Preload("Course.Category").
+		Preload("User").
+		Where("id = ?", id).
+		First(&testimonial).Error
+
+	if err != nil {
+		return testimonial, err
+	}
+
+	return testimonial, nil
 }

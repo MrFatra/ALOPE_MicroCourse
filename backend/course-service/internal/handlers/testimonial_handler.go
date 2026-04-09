@@ -17,6 +17,8 @@ func GetTestimonialHandler(c *gin.Context) {
 			"message": "Gagal mengambil data testimonial.",
 			"data":    err.Error(),
 		})
+
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -26,4 +28,26 @@ func GetTestimonialHandler(c *gin.Context) {
 		"data":    testimonials,
 	})
 
+}
+
+func GetTestimonialByIDHandler(c *gin.Context) {
+	testimonial, err := services.GetTestimonialByIDService(c.Param("id"))
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"status":  "error",
+			"code":    "ALP-941",
+			"message": "Gagal mengambil data testimoni berdasarkan id.",
+			"data":    err.Error(),
+		})
+
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"code":    "ALP-299",
+		"message": "Berhasil mengambil data testimoni berdasarkan id.",
+		"data":    testimonial,
+	})
 }

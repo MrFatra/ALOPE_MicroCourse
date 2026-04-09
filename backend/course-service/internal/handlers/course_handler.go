@@ -27,3 +27,25 @@ func GetCourseHandler(c *gin.Context) {
 		"data":    courses,
 	})
 }
+
+func GetCourseByIDHandler(c *gin.Context) {
+	course, err := services.GetCourseByIDService(c.Param("id"))
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"status":  "error",
+			"code":    "ALP-289",
+			"message": "Gagal mengambil data kursus berdasarkan id.",
+			"data":    err.Error(),
+		})
+
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"code":    "ALP-354",
+		"message": "Berhasil mengambil data kursus berdasarkan id.",
+		"data":    course,
+	})
+}

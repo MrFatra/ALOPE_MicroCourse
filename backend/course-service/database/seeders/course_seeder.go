@@ -12,20 +12,28 @@ import (
 func SeedCourses(db *gorm.DB) error {
 	courses := []model.Course{
 		{
+			CategoryID:  2,
 			Title:       "LWD PBK",
 			Description: "Belajar Web Programming dengan PBK.",
 		},
 		{
+			CategoryID:  1,
 			Title:       "HTML Dasar",
 			Description: "Belajar HTML dari dasar.",
+			Status:      "archived",
+			Visibility:  "private",
 		},
 		{
+			CategoryID:  1,
 			Title:       "CSS Dasar",
 			Description: "Dasar-dasar CSS untuk pemula.",
+			Status:      "published",
 		},
 		{
+			CategoryID:  1,
 			Title:       "CSS Layouting",
 			Description: "Latihan Membuat Website Statis dengan HTML & CSS.",
+			Visibility:  "private",
 		},
 	}
 

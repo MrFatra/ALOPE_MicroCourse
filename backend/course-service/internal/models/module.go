@@ -13,7 +13,7 @@ type Module struct {
 	Description string         `gorm:"type:text" json:"description"`
 	Cover       string         `json:"cover"`
 	Body        string         `gorm:"type:text" json:"body"`
-	CourseID    uint           `json:"course_id"`
+	CourseID    uint           `json:"-"`
 	Course      Course         `gorm:"foreignKey:course_id" json:"course"`
 	CreatedAt   time.Time      `json:"created_at"`
 	UpdatedAt   time.Time      `json:"updated_at"`

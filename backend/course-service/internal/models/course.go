@@ -14,7 +14,7 @@ type Course struct {
 	Visibility  string         `gorm:"type:visibility_enum;default:'public'" json:"visibilty"`
 	Status      string         `gorm:"type:status_enum;default:'draft'" json:"status"`
 	Description string         `gorm:"type:text" json:"description"`
-	CategoryID  uint           `json:"category_id"`
+	CategoryID  uint           `json:"-"`
 	Category    Category       `gorm:"foreignKey:CategoryID" json:"category"`
 	CreatedAt   time.Time      `json:"created_at"`
 	UpdatedAt   time.Time      `json:"updated_at"`

@@ -15,3 +15,13 @@ func GetCourseService() ([]models.Course, error) {
 
 	return courses, nil
 }
+
+func GetCourseByIDService(id string) (models.Course, error) {
+	course, err := repositories.GetCourseByIDRepository(id)
+
+	if err != nil {
+		return course, err
+	}
+
+	return course, nil
+}

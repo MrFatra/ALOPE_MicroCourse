@@ -14,3 +14,13 @@ func GetModuleService() ([]models.Module, error) {
 
 	return modules, nil
 }
+
+func GetModuleByIDService(id string) (models.Module, error) {
+	module, err := repositories.GetModuleByIDRepository(id)
+
+	if err != nil {
+		return module, err
+	}
+
+	return module, nil
+}

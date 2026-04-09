@@ -10,11 +10,32 @@ func GetModuleRepository() ([]models.Module, error) {
 
 	var modules []models.Module
 
-	err := db.Order("id ASC").Find(&modules).Error
+	err := db.
+		Preload("Course").
+		Preload("Course.Category").
+		Find(&modules).Error
 
 	if err != nil {
 		return nil, err
 	}
 
 	return modules, nil
+}
+
+func GetModuleByIDRepository(id string) (models.Module, error) {
+	db := config.DB
+
+	var module models.Module
+
+	err := db.
+		Preload("Course").
+		Preload("Course.Category").
+		Where("id = ?", id).
+		First(&module).Error
+
+	if err != nil {
+		return module, err
+	}
+
+	return module, nil
 }
