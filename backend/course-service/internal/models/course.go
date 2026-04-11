@@ -20,3 +20,7 @@ type Course struct {
 	UpdatedAt   time.Time      `json:"updated_at"`
 	DeletedAt   gorm.DeletedAt `gorm:"index" json:"-"`
 }
+
+type CourseListResponse = Response[[]Course]
+type CourseResponse = Response[Course]
+type CourseErrorResponse = Response[string]

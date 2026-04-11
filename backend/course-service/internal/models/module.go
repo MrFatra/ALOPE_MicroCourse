@@ -19,3 +19,7 @@ type Module struct {
 	UpdatedAt   time.Time      `json:"updated_at"`
 	DeletedAt   gorm.DeletedAt `gorm:"index" json:"-"`
 }
+
+type ModuleListResponse = Response[[]Module]
+type ModuleResponse = Response[Module]
+type ModuleErrorResponse = Response[string]

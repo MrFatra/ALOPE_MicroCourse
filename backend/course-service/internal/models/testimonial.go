@@ -19,3 +19,7 @@ type Testimonial struct {
 	UpdatedAt time.Time      `json:"updated_at"`
 	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`
 }
+
+type TestimonialListResponse = Response[[]Testimonial]
+type TestimonialResponse = Response[Testimonial]
+type TestimonialErrorResponse = Response[string]

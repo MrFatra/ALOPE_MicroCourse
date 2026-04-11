@@ -1,53 +1,78 @@
 package handlers
 
 import (
+	"alope-course/course-service/internal/models"
 	"alope-course/course-service/internal/services"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
+// GetAllTestimonials godoc
+// @Summary      Get list testimonials
+// @Description  Get list testimonials without pagination
+// @Tags         testimonials
+// @Produce      json
+// @Success 200 {object} models.TestimonialListResponse
+// @Failure 500 {object} models.TestimonialErrorResponse
+// @Router       /testimonials [get]
 func GetTestimonialHandler(c *gin.Context) {
 	testimonials, err := services.GetTestimonialService()
 
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"status":  "error",
-			"code":    "ALP-004",
-			"message": "Gagal mengambil data testimonial.",
-			"data":    err.Error(),
-		})
+		res := models.Response[string]{
+			Status:  "error",
+			Code:    "ALP-004",
+			Message: "Gagal mengambil data testimonial.",
+			Data:    err.Error(),
+		}
+
+		c.JSON(http.StatusInternalServerError, res)
 
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"status":  "success",
-		"code":    "ALP-006",
-		"message": "Berhasil memuat data testimonial.",
-		"data":    testimonials,
-	})
+	res := models.Response[[]models.Testimonial]{
+		Status:  "success",
+		Code:    "ALP-006",
+		Message: "Berhasil memuat data testimonial.",
+		Data:    testimonials,
+	}
 
+	c.JSON(http.StatusOK, res)
 }
 
+// GetTestimonialByID godoc
+// @Summary      Get testimonial by id
+// @Description  Get testimonial by id
+// @Tags         testimonials
+// @Produce      json
+// @Param        id path int true "Testimonial ID"
+// @Success 200 {object} models.TestimonialResponse
+// @Failure 500 {object} models.TestimonialErrorResponse
+// @Router       /testimonials/{id} [get]
 func GetTestimonialByIDHandler(c *gin.Context) {
 	testimonial, err := services.GetTestimonialByIDService(c.Param("id"))
 
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"status":  "error",
-			"code":    "ALP-941",
-			"message": "Gagal mengambil data testimoni berdasarkan id.",
-			"data":    err.Error(),
-		})
+		res := models.Response[string]{
+			Status:  "error",
+			Code:    "ALP-941",
+			Message: "Gagal mengambil data testimoni berdasarkan id.",
+			Data:    err.Error(),
+		}
+
+		c.JSON(http.StatusInternalServerError, res)
 
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"status":  "success",
-		"code":    "ALP-299",
-		"message": "Berhasil mengambil data testimoni berdasarkan id.",
-		"data":    testimonial,
-	})
+	res := models.Response[models.Testimonial]{
+		Status:  "success",
+		Code:    "ALP-299",
+		Message: "Berhasil mengambil data testimoni berdasarkan id.",
+		Data:    testimonial,
+	}
+
+	c.JSON(http.StatusOK, res)
 }
